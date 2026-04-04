@@ -1,0 +1,81 @@
+.category-container {
+  
+  margin-top: 100px;
+  padding: 20px;
+   
+}
+
+/* 🔥 MAIN TITLE */
+.category-title {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 5px;
+}
+
+/* 🔥 NEW COLLECTION */
+.collection-title {
+  text-align: center;
+  font-size: 22px;
+  margin-top: 10px;   /* 👈 push down */
+  margin-bottom: 20px;
+}
+
+/* 🔥 GRID */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* 🔥 CARD */
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 10px;
+  background: white;
+}
+
+/* 🔥 IMAGE */
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.image-wrapper img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top; /* 👈 face visible */
+  transition: opacity 0.4s ease;
+}
+
+/* hover effect */
+.img2 {
+  opacity: 0;
+}
+
+.image-wrapper:hover .img2 {
+  opacity: 1;
+}
+
+.image-wrapper:hover .img1 {
+  opacity: 0;
+}
+
+/* 🔥 TEXT ONLY CENTER */
+.product-info {
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* hover card */
+.product-card:hover {
+  transform: translateY(-5px);
+  transition: 0.3s;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}

@@ -1,0 +1,54 @@
+.work-banner {
+  position: relative;
+  width: 100%;
+  height: 150vh;
+  overflow: hidden;
+  margin-bottom: 5px;
+   cursor: pointer;
+}
+
+/* IMAGE */
+.work-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  /* 🔥 adjust image side */
+  object-position: right center;
+}
+
+/* TEXT */
+.banner-text {
+  position: absolute;
+  top: 50%;
+  left: 8%;
+  transform: translateY(-50%);
+  color: #2e2e2e;
+  max-width: 400px;
+}
+
+/* HEADING */
+.banner-text h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+/* PARAGRAPH */
+.banner-text p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* BUTTON */
+.banner-text button {
+  padding: 10px 20px;
+  border: 1px solid #000;
+  background: transparent;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.banner-text button:hover {
+  background: #000;
+  color: #fff;
+}

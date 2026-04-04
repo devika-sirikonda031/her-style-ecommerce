@@ -1,0 +1,43 @@
+/* FULL PAGE FIX */
+.success-wrapper {
+  width: 100%;
+  min-height: calc(100vh - 70px); /* navbar height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CENTER BOX */
+.success-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CARD */
+.success-box {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  width: 350px;
+}
+.success-box button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: #ff3f6c;   /* Myntra pink 🔥 */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+/* Hover effect */
+.success-box button:hover {
+  background: #e6365f;
+  transform: scale(1.05);
+}

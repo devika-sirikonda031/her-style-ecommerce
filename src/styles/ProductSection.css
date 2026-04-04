@@ -1,0 +1,20 @@
+/* Section */
+.products {
+  padding-top: 100px;
+  /* padding: 40px 60px; */
+  text-align: center;
+}
+
+/* Heading */
+.products h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+}
+
+/* Grid layout */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);  /* 4 cards per row */
+  gap: 25px;
+}

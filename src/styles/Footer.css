@@ -1,0 +1,26 @@
+.footer {
+  background: #e8ded3;
+  padding: 40px 60px;
+  margin-top: 60px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.footer h4 {
+  margin-bottom: 10px;
+}
+
+.footer p {
+  margin: 5px 0;
+  color: #444;
+}
+
+.copyright {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 14px;
+}

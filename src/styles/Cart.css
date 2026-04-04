@@ -1,0 +1,144 @@
+.cart-main {
+  display: flex;
+  gap: 40px;
+  padding: 100px 80px;
+  background: #f5f5f6;
+}
+
+/* LEFT */
+.cart-left {
+  flex: 2;
+}
+
+.delivery-box {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.delivery-box button {
+  border: 1px solid #ff3f6c;
+  color: #ff3f6c;
+  background: white;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* CARD */
+.cart-card {
+  display: flex;
+  gap: 15px;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.cart-card img {
+  width: 100px;
+  border-radius: 8px;
+}
+
+.cart-info h4 {
+  margin: 0;
+}
+
+.price span {
+  text-decoration: line-through;
+  color: gray;
+  margin-left: 10px;
+}
+
+.price .off {
+  color: orange;
+  margin-left: 5px;
+}
+
+.cart-info button {
+  margin-top: 10px;
+  background: none;
+  border: none;
+  color: #ff3f6c;
+  cursor: pointer;
+}
+
+/* RIGHT */
+.cart-right {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  height: fit-content;
+}
+
+.coupon {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.coupon button {
+  border: 1px solid #ff3f6c;
+  color: #ff3f6c;
+  background: white;
+  padding: 5px 10px;
+}
+
+/* PRICE */
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.discount {
+  color: green;
+}
+
+.total {
+  font-weight: bold;
+}
+
+/* BUTTON */
+.place-order {
+  width: 100%;
+  background: #ff3f6c;
+  color: white;
+  padding: 12px;
+  border: none;
+  margin-top: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+}
+.qty-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.qty-box button {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.qty-box span {
+  font-weight: 600;
+}
+
+.remove-btn {
+  margin-top: 8px;
+  background: none;
+  border: none;
+  color: #ff3f6c;
+  cursor: pointer;
+  font-weight: 600;
+}

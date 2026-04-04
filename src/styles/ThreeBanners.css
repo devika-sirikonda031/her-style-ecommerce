@@ -1,0 +1,29 @@
+.three-banners {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+  
+}
+
+.banner {
+  position: relative;
+  height: 400px;   /* 🔥 increase height here */
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* 🔥 full image clear */
+}
+
+.banner h2 {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}

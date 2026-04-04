@@ -1,0 +1,62 @@
+.evening-banner {
+  width: 100%;
+  height: 150vh;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 5px;  /* adjust 20–40px */
+  cursor: pointer;
+
+}
+
+/* IMAGE FULL WIDTH */
+.evening-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  /* 👇 adjust model position */
+  object-position: left center;
+  pointer-events: none;
+}
+
+/* TEXT OVER IMAGE */
+.evening-text {
+  position: absolute;
+  top: 50%;
+  right: 8%;
+  transform: translateY(-50%);
+
+  color: #f5f2ec; /* soft white */
+  text-align: left;
+}
+
+/* HEADING */
+.evening-text h2 {
+  font-size: 48px;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+/* SUBTEXT */
+.evening-text p {
+  font-size: 20px;
+  margin-bottom: 25px;
+  color: #e0dbd3;
+}
+
+/* BUTTON */
+.evening-text button {
+  padding: 12px 28px;
+  border: 1px solid #f5f2ec;
+  background: transparent;
+  color: #f5f2ec;
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.evening-text button:hover {
+  background: #f5f2ec;
+  color: #333;
+}
