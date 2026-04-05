@@ -34,13 +34,16 @@ export const addProduct = async (req, res) => {
 // 📦 GET PRODUCTS
 export const getProducts = async (req, res) => {
   try {
-    const products = await Product.find().sort({ createdAt: -1 });
-    res.status(200).json(products);
+    const products = await Product.find(); // ✅ FIXED
+
+    res.status(200).json({
+      products: products
+    });
+
   } catch (error) {
-    console.log(error);
+    console.log("ERROR:", error);
     res.status(500).json({ message: "Error fetching products ❌" });
   }
-};
 
 
 // ❌ DELETE PRODUCT
