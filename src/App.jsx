@@ -52,15 +52,15 @@ function App() {
         {/* OTHER */}
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
-        <Route 
-  path="/admin" 
-  element={
-    <AdminRoute>
-      <Admin />
-    </AdminRoute>
-  } 
-/>
-        
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <Admin />
+            </AdminRoute>
+          }
+        />
+
 
         {/* 🔥 FALLBACK */}
         <Route path="*" element={<Home />} />
