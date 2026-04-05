@@ -7,13 +7,13 @@ import {
 
 const router = express.Router();
 
-// ➕ ADD
+// ➕ ADD PRODUCT
 router.post("/", addProduct);
 
-// 📦 GET
+// 📦 GET PRODUCTS
 router.get("/", getProducts);
 
-// ❌ DELETE
+// ❌ DELETE PRODUCT
 router.delete("/:id", deleteProduct);
 
 export default router;
