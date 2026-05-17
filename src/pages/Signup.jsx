@@ -64,9 +64,11 @@ function Signup() {
 
       setLoading(true);
 
+      // ✅ FIXED ROUTE
+
       const res = await axios.post(
 
-        "http://localhost:5000/api/auth/signup",
+        "http://localhost:5000/api/auth/register",
 
         {
           name: trimmedName,

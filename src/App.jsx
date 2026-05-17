@@ -13,7 +13,7 @@ import ProductDetails from "./pages/ProductDetails";
 import CategoryPage from "./pages/CategoryPage";
 import Wishlist from "./pages/Wishlist";
 import Orders from "./pages/Order";
-import ResetPassword from "./pages/ResetPassword";
+
 import Admin from "./pages/Admin";
 import Payment from "./pages/Payment";
 import Address from "./pages/Address";
@@ -50,11 +50,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
 
-        {/* RESET PASSWORD */}
-        <Route
-          path="/reset-password/:token"
-          element={<ResetPassword />}
-        />
+       
 
         {/* CATEGORY PAGES */}
         <Route
