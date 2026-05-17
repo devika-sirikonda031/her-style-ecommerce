@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000/api";
+const BASE_URL = "https://her-style-backend-rs3l.onrender.com/api";
 
 // ✅ GET ALL PRODUCTS
 export const getProducts = async () => {
