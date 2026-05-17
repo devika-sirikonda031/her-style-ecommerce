@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
+import axios from "axios";
 import "../styles/Checkout.css";
 
 function Checkout() {
@@ -11,108 +12,64 @@ function Checkout() {
     name: "",
     phone: "",
     address: "",
-    pincode: ""
+    pincode: "",
   });
 
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
   const totalAmount = cart.reduce(
-    (sum, item) => sum + item.price * item.qty,
+    (sum, item) => sum + item.price * (item.qty || 1),
     0
   );
 
-  const handleOrder = () => {
+  const handleOrder = async () => {
+    try {
+      const res = await axios.post("http://localhost:5000/api/orders", {
+        items: cart,
+        total: totalAmount,
+        address: form,
+      });
 
-    if (cart.length === 0) {
-      alert("Your cart is empty 😔");
-      return;
+      setCart([]);
+
+      // ✅ PASS ORDER ID
+      navigate("/order-success", {
+        state: { orderId: res.data.orderId },
+      });
+
+    } catch (err) {
+      console.log(err);
+      alert("Order failed ❌");
     }
-
-    // ✅ CREATE ORDER
-    const newOrder = {
-      id: Date.now(),
-      date: new Date().toLocaleString(),
-      items: cart,
-      total: totalAmount,
-      address: form
-    };
-
-    // ✅ SAVE IN LOCAL STORAGE
-    const oldOrders =
-      JSON.parse(localStorage.getItem("orders")) || [];
-
-    localStorage.setItem(
-      "orders",
-      JSON.stringify([newOrder, ...oldOrders])
-    );
-
-    // ✅ CLEAR CART
-    setCart([]);
-
-    alert("Order placed successfully 🎉");
-
-    navigate("/order-success");
   };
 
   return (
     <div className="checkout-container">
-
-      {/* LEFT */}
       <div className="checkout-left">
         <h2>Delivery Address</h2>
 
-        <input
-          type="text"
-          placeholder="Full Name"
-          value={form.name}
-          onChange={(e) =>
-            setForm({ ...form, name: e.target.value })
-          }
-        />
-
-        <input
-          type="text"
-          placeholder="Mobile Number"
-          value={form.phone}
-          onChange={(e) =>
-            setForm({ ...form, phone: e.target.value })
-          }
-        />
-
-        <textarea
-          placeholder="Address"
-          value={form.address}
-          onChange={(e) =>
-            setForm({ ...form, address: e.target.value })
-          }
-        />
-
-        <input
-          type="text"
-          placeholder="Pincode"
-          value={form.pincode}
-          onChange={(e) =>
-            setForm({ ...form, pincode: e.target.value })
-          }
-        />
+        <input name="name" placeholder="Full Name" onChange={handleChange} />
+        <input name="phone" placeholder="Mobile Number" onChange={handleChange} />
+        <textarea name="address" placeholder="Address" onChange={handleChange}></textarea>
+        <input name="pincode" placeholder="Pincode" onChange={handleChange} />
       </div>
 
-      {/* RIGHT */}
       <div className="checkout-right">
         <h3>Order Summary</h3>
 
         {cart.map((item) => (
           <div key={item._id}>
             <p>{item.title}</p>
-            <span>₹{item.price} x {item.qty}</span>
+            <span>₹{item.price} x {item.qty || 1}</span>
           </div>
         ))}
 
-        <h3>Total: ₹{totalAmount}</h3>
+        <h2>Total: ₹{totalAmount}</h2>
 
-        <button onClick={handleOrder}>
-          PLACE ORDER
-        </button>
+        <button onClick={handleOrder}>Place Order</button>
       </div>
-
     </div>
   );
 }

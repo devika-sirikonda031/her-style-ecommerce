@@ -1,0 +1,109 @@
+.category-section {
+  width: 100%;
+  padding: 50px 30px;
+  background: #f8f6f4;
+  box-sizing: border-box;
+}
+
+.category-title {
+  text-align: center;
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 50px;
+  color: #111;
+}
+
+/* MAIN ROW */
+.unique-category-grid {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  gap: 28px !important;
+  width: 100% !important;
+}
+
+/* CARD */
+.unique-category-grid .category-card {
+  width: 24% !important;
+  min-width: 24% !important;
+  max-width: 24% !important;
+
+  background: #ffffff;
+  padding: 14px;
+  border-radius: 14px;
+  overflow: hidden;
+
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+
+  transition: all 0.35s ease;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* HOVER EFFECT */
+.unique-category-grid .category-card:hover {
+  transform: translateY(-10px);
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+}
+
+/* IMAGE */
+.unique-category-grid .category-card img {
+  width: 100% !important;
+  height: 360px !important;
+
+  object-fit: cover !important;
+  display: block !important;
+
+  border-radius: 10px;
+
+  transition: transform 0.4s ease;
+}
+
+/* IMAGE HOVER */
+.unique-category-grid .category-card:hover img {
+  transform: scale(1.04);
+}
+
+/* TEXT */
+.category-label {
+  margin-top: 18px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #111;
+
+  letter-spacing: 1px;
+}
+
+/* TABLET */
+@media screen and (max-width: 1000px) {
+  .unique-category-grid {
+    flex-wrap: wrap !important;
+  }
+
+  .unique-category-grid .category-card {
+    width: 48% !important;
+    min-width: 48% !important;
+    max-width: 48% !important;
+  }
+}
+
+/* MOBILE */
+@media screen and (max-width: 600px) {
+  .unique-category-grid .category-card {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .category-title {
+    font-size: 36px;
+  }
+
+  .unique-category-grid .category-card img {
+    height: 300px !important;
+  }
+}

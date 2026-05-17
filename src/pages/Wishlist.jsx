@@ -1,66 +1,98 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { WishlistContext } from "../context/WishlistContext";
 import { CartContext } from "../context/CartContext";
 import "../styles/Wishlist.css";
 
-function Wishlist() {
-    const { wishlist, setWishlist, addToCart } = useContext(CartContext);
+const Wishlist = () => {
+  const { wishlist, toggleWishlist } =
+    useContext(WishlistContext);
 
-    // ❌ REMOVE ITEM
-    const removeItem = (id) => {
-        setWishlist(wishlist.filter((item) => item._id !== id));
-    };
+  const { addToCart } = useContext(CartContext);
 
-    // 🛒 MOVE TO CART
-    const moveToCart = (item) => {
-        addToCart(item);
-        removeItem(item._id);
-    };
+  const navigate = useNavigate();
 
-    return (
-        <div className="wishlist-container">
+  return (
+    <div className="wishlist-page">
 
-            <h2>My Wishlist {wishlist.length} items</h2>
+      <h1 className="wishlist-heading">
+        My Wishlist
+      </h1>
 
-            {wishlist.length === 0 ? (
-                <p className="empty">No items in wishlist ❤️</p>
-            ) : (
-                <div className="wishlist-grid">
+      {wishlist.length === 0 ? (
 
-                    {wishlist.map((item) => (
-                        <div key={item._id} className="wish-card">
+        <div className="empty-wishlist">
+          <h2>Your wishlist is empty ♡</h2>
+          <p>Add your favorite styles here.</p>
 
-                            {/* ❌ REMOVE BUTTON */}
-                            <button
-                                className="remove-btn"
-                                onClick={() => removeItem(item._id)}
-                            >
-                                ✕
-                            </button>
-
-                            <img src={item.image1} alt="" />
-
-                            <p className="title">{item.title}</p>
-
-                            <p className="price">
-                                ₹{item.price}
-                                <span className="old"> ₹1999</span>
-                            </p>
-
-                            {/* 🛒 MOVE TO BAG */}
-                            <button
-                                className="move-btn"
-                                onClick={() => moveToCart(item)}
-                            >
-                                MOVE TO BAG
-                            </button>
-
-                        </div>
-                    ))}
-
-                </div>
-            )}
+          <button onClick={() => navigate("/")}>
+            Continue Shopping
+          </button>
         </div>
-    );
-}
+
+      ) : (
+
+        <div className="wishlist-grid">
+
+          {wishlist.map((item) => (
+
+            <div className="wishlist-card" key={item._id}>
+
+              {/* IMAGE */}
+              <div
+                className="wishlist-image"
+                onClick={() =>
+                  navigate(`/product/${item._id}`)
+                }
+              >
+                <img src={item.image1} alt="" />
+              </div>
+
+              {/* REMOVE */}
+              <button
+                className="remove-btn"
+                onClick={() => toggleWishlist(item)}
+              >
+                ✕
+              </button>
+
+              {/* DETAILS */}
+              <div className="wishlist-details">
+
+                <h3>{item.title}</h3>
+
+                <p className="wishlist-price">
+                  ₹{item.price.toLocaleString()}
+                </p>
+
+                <button
+                  className="wishlist-cart-btn"
+                  onClick={() => {
+                    addToCart({
+                      _id: item._id,
+                      title: item.title,
+                      price: item.price,
+                      image: item.image1,
+                      qty: 1,
+                    });
+
+                    alert("Added to cart ✅");
+                  }}
+                >
+                  Add to Cart
+                </button>
+
+              </div>
+
+            </div>
+
+          ))}
+
+        </div>
+
+      )}
+    </div>
+  );
+};
 
 export default Wishlist;

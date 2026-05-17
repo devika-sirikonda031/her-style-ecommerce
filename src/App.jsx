@@ -12,46 +12,164 @@ import OrderSuccess from "./pages/OrderSuccess";
 import ProductDetails from "./pages/ProductDetails";
 import CategoryPage from "./pages/CategoryPage";
 import Wishlist from "./pages/Wishlist";
-import OrderHistory from "./pages/OrderHistory";
-import ProtectedRoute from "./components/ProtectedRoute";
-import ForgotPassword from "./pages/ForgotPassword";
+import Orders from "./pages/Order";
 import ResetPassword from "./pages/ResetPassword";
 import Admin from "./pages/Admin";
+import Payment from "./pages/Payment";
+import Address from "./pages/Address";
+
+
+// Protected Components
+import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
 
 function App() {
-  const location = useLocation(); // 🔥 IMPORTANT
+
+  const location = useLocation();
+
+  const hideNavbarRoutes = [
+    "/login",
+    "/signup",
+    "/admin",
+    "/forgot-password"
+  ];
 
   return (
     <>
-      {/* ❌ HIDE NAVBAR IN ADMIN */}
-      {location.pathname !== "/admin" && <Navbar />}
+
+      {/* NAVBAR */}
+      {!hideNavbarRoutes.includes(location.pathname) && <Navbar />}
 
       <Routes>
 
-        {/* ✅ PUBLIC */}
+        {/* HOME */}
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
+
+        {/* AUTH */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
 
-        {/* CATEGORY */}
-        <Route path="/category/:type" element={<CategoryPage />} />
+        {/* RESET PASSWORD */}
+        <Route
+          path="/reset-password/:token"
+          element={<ResetPassword />}
+        />
 
-        {/* PRODUCT */}
-        <Route path="/product/:id" element={<ProductDetails />} />
+        {/* CATEGORY PAGES */}
+        <Route
+          path="/tops"
+          element={<CategoryPage category="tops" />}
+        />
 
-        {/* 🔐 PROTECTED */}
-        <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
-        <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
-        <Route path="/order-success" element={<ProtectedRoute><OrderSuccess /></ProtectedRoute>} />
-        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-        <Route path="/wishlist" element={<ProtectedRoute><Wishlist /></ProtectedRoute>} />
-        <Route path="/orders" element={<ProtectedRoute><OrderHistory /></ProtectedRoute>} />
+        <Route
+          path="/dresses"
+          element={<CategoryPage category="dresses" />}
+        />
 
-        {/* OTHER */}
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/reset-password/:token" element={<ResetPassword />} />
+        <Route
+          path="/skirts"
+          element={<CategoryPage category="skirts" />}
+        />
+
+        <Route
+          path="/trousers"
+          element={<CategoryPage category="trousers" />}
+        />
+
+        {/* OLD CATEGORY ROUTE */}
+        <Route
+          path="/category/:category"
+          element={<CategoryPage />}
+        />
+
+        {/* PRODUCT DETAILS */}
+        <Route
+          path="/product/:id"
+          element={<ProductDetails />}
+        />
+
+        {/* ADDRESS */}
+        <Route
+          path="/address"
+          element={
+            <ProtectedRoute>
+              <Address />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* PAYMENT */}
+        <Route
+          path="/payment"
+          element={
+            <ProtectedRoute>
+              <Payment />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* CART */}
+        <Route
+          path="/cart"
+          element={
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* CHECKOUT */}
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <Checkout />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* ORDER SUCCESS */}
+        <Route
+          path="/order-success"
+          element={
+            <ProtectedRoute>
+              <OrderSuccess />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* PROFILE */}
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* WISHLIST */}
+        <Route
+          path="/wishlist"
+          element={
+            <ProtectedRoute>
+              <Wishlist />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* ORDERS */}
+        <Route
+          path="/orders"
+          element={
+            <ProtectedRoute>
+              <Orders />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* ADMIN */}
         <Route
           path="/admin"
           element={
@@ -61,9 +179,10 @@ function App() {
           }
         />
 
-
-        {/* 🔥 FALLBACK */}
+        {/* FALLBACK */}
         <Route path="*" element={<Home />} />
+
+        
 
       </Routes>
     </>

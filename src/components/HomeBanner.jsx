@@ -1,18 +1,18 @@
-import bannerVideo from "../assets/hero_banner.mp4";
 import "../styles/HomeBanner.css";
+import banner from "../assets/Home_Banner.png";
 
 function HomeBanner() {
   return (
     <div className="banner">
-      
-      <video src={bannerVideo} autoPlay loop muted />
+      <img src={banner} alt="banner" />
 
-      <div className="banner-content">
-        <h1>New Fashion Collection</h1>
-        <p>Up to 50% OFF 🔥</p>
-        <button>Shop Now</button>
+      {/* TEXT OVER IMAGE */}
+      <div className="banner-text">
+        <h5>NEW ARRIVALS</h5>
+        <h1>SPRING SUMMER 2026</h1>
+        <p>TIMELESS FASHION FOR MODERN WOMEN</p>
+        <button>SHOP NOW →</button>
       </div>
-
     </div>
   );
 }

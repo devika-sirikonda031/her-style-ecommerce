@@ -1,16 +1,156 @@
-# React + Vite
+<img width="1911" height="908" alt="image" src="https://github.com/user-attachments/assets/7d43f177-5283-4dee-87df-b1889dc3c0d5" /># 🛍️ Her Style – MERN E-Commerce Application (In Progress)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Project Overview
 
-Currently, two official plugins are available:
+Her Style is a full-stack e-commerce web application built using the MERN stack (MongoDB, Express.js, React.js, Node.js).
+This project is currently under development and focuses on building a scalable and user-friendly online shopping platform.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Features (Completed)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* 🔹 Backend developed using Node.js and Express.js
+* 🔹 REST API for product management (Add, Delete, Get Products)
+* 🔹 MongoDB database integration
+* 🔹 Frontend setup using React.js (Vite)
+* 🔹 Fetching products from backend API and displaying in UI
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Features (In Progress)
+
+* 🔸 User Authentication (Login/Register)
+* 🔸 Shopping Cart functionality
+* 🔸 UI enhancements and styling
+* 🔸 Payment Gateway Integration
+
+---
+
+## 💻 Tech Stack
+
+**Frontend:**
+
+* React.js (Vite)
+* HTML, CSS
+* JavaScript
+
+**Backend:**
+
+* Node.js
+* Express.js
+
+**Database:**
+
+* MongoDB
+
+**Tools:**
+
+* Git & GitHub
+* VS Code
+* Postman
+
+---
+
+## 📂 Project Structure
+
+```
+her-style-ecommerce/
+│
+├── backend/
+│   ├── controllers/
+│   │   ├── authController.js
+│   │   └── productController.js
+│   │
+│   ├── models/
+│   │   ├── User.js
+│   │   ├── Product.js
+│   │   └── Order.js
+│   │
+│   ├── routes/
+│   │   ├── authRoutes.js
+│   │   ├── productRoutes.js
+│   │   └── orderRoutes.js
+│   │
+│   ├── utils/
+│   ├── .env
+│   └── server.js
+│
+├── src/
+│   ├── components/
+│   │   ├── Navbar.jsx
+│   │   ├── ProductCard.jsx
+│   │   ├── ProductSection.jsx
+│   │   └── ...
+│   │
+│   ├── pages/
+│   ├── services/
+│   ├── styles/
+│   ├── App.jsx
+│   └── main.jsx
+│
+├── public/
+├── package.json
+└── README.md
+```
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone the repository
+
+```
+git clone https://github.com/devika-sirikonda031/her-style-ecommerce.git
+```
+
+### 2️⃣ Backend setup
+
+```
+cd backend
+npm install
+npm start
+```
+
+### 3️⃣ Frontend setup
+
+```
+npm install
+npm run dev
+```
+
+---
+
+## 🌐 API Example
+
+* GET `/api/products` → Fetch all products
+* POST `/api/products` → Add product
+* DELETE `/api/products/:id` → Delete product
+
+---
+
+## 📸 Screenshots
+
+<img width="1911" height="908" alt="image" src="https://github.com/user-attachments/assets/8278b0fb-5e75-4df8-bb15-cd5618983c1b" />
+
+
+---
+
+## 📌 Future Enhancements
+
+* 🔹 JWT Authentication
+* 🔹 Admin Dashboard
+* 🔹 Order Management
+* 🔹 Deployment (Render / Vercel)
+
+---
+
+## 👩‍💻 Author
+
+**Devika Sirikonda**
+🔗 GitHub: https://github.com/devika-sirikonda031
+
+---
+
+## ⭐ Note
+
+This project is currently under development. More features will be added soon.

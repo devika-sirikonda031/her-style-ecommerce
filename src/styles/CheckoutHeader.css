@@ -1,0 +1,25 @@
+.checkout-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background: white;
+  border-bottom: 1px solid #eee;
+}
+
+.checkout-header h2 {
+  font-size: 14px;
+  color: gray;
+}
+
+.checkout-header .active {
+  color: #14cda8;
+  font-weight: bold;
+}
+
+.secure {
+  position: absolute;
+  right: 50px;
+  color: green;
+}

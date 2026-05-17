@@ -1,31 +1,20 @@
-import { useEffect, useState } from "react";
-import { getProducts } from "../services/api";
-import { Link } from "react-router-dom";
 import HomeBanner from "../components/HomeBanner";
-import Categories from "../components/Categories";
-import ProductCard from "../components/ProductCard";
-import Footer from "../components/Footer";
+import CategorySection from "../components/CategorySection";
 import ThreeBanners from "../components/ThreeBanners";
+import Footer from "../components/Footer";
 
 function Home() {
-  const [products, setProducts] = useState([]);
-
-  // ✅ Fetch products from backend
-  useEffect(() => {
-    getProducts().then((data) => setProducts(data));
-  }, []);
-
   return (
     <div>
 
-      {/* 🔥 Banner */}
+      {/* 🔥 TOP BANNER */}
       <HomeBanner />
 
-      {/* 🔥 Categories Section */}
-      <Categories />
-      <ThreeBanners /> 
+      {/* 🔥 TRENDING CATEGORIES */}
+      <CategorySection />
 
-      {/* 🔥 Footer */}
+      {/* 🔥 3 PROMO BANNERS */}
+      <ThreeBanners />
       <Footer />
 
     </div>

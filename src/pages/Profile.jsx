@@ -1,123 +1,148 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/Profile.css";
 
-const Profile = () => {
+function Profile() {
+  const navigate = useNavigate();
+
+  const storedUser =
+    JSON.parse(localStorage.getItem("user")) || {};
+
+  const [isEditing, setIsEditing] = useState(false);
 
   const [user, setUser] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    address: ""
+    name: storedUser.name || "",
+    email: storedUser.email || "",
+    phone: storedUser.phone || "",
+    address: storedUser.address || "",
   });
 
-  const [isProfileCreated, setIsProfileCreated] = useState(false);
-  const [edit, setEdit] = useState(true);
-
-  // 👉 Load profile if exists
-  useEffect(() => {
-    const savedUser = localStorage.getItem("userProfile");
-
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-      setIsProfileCreated(true);
-      setEdit(false);
-    }
-  }, []);
-
-  // 👉 Handle input
   const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  // 👉 Save profile
-  const handleSave = () => {
-    localStorage.setItem("userProfile", JSON.stringify(user));
-    setIsProfileCreated(true);
-    setEdit(false);
-    alert("Profile created successfully ✅");
-  };
-
-  // 👉 Logout
-  const handleLogout = () => {
-    localStorage.removeItem("userProfile");
-    window.location.href = "/";
+  const saveProfile = () => {
+    localStorage.setItem("user", JSON.stringify(user));
+    setIsEditing(false);
   };
 
   return (
     <div className="profile-page">
-      <h2>MY PROFILE</h2>
 
       <div className="profile-card">
 
-        {/* Name */}
-        <label>Name</label>
-        <input
-          type="text"
-          name="name"
-          value={user.name}
-          disabled={!edit}
-          onChange={handleChange}
-          placeholder="Enter your name"
-        />
+        {/* AVATAR */}
+        <div className="profile-top">
 
-        {/* Email */}
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          value={user.email}
-          disabled={!edit}
-          onChange={handleChange}
-          placeholder="Enter your email"
-        />
+          <div className="profile-avatar">
+            {user?.name?.charAt(0).toUpperCase()}
+          </div>
 
-        {/* Phone */}
-        <label>Phone</label>
-        <input
-          type="text"
-          name="phone"
-          value={user.phone}
-          disabled={!edit}
-          onChange={handleChange}
-          placeholder="Enter your phone"
-        />
+          <h2>{user.name}</h2>
 
-        {/* Address */}
-        <label>Address</label>
-        <textarea
-          name="address"
-          value={user.address}
-          disabled={!edit}
-          onChange={handleChange}
-          placeholder="Enter your address"
-        />
+          <p>{user.email}</p>
 
+        </div>
+
+        {/* DETAILS */}
+        <div className="profile-details">
+
+          {/* NAME */}
+          <div className="detail-row">
+            <span>Full Name</span>
+
+            {isEditing ? (
+              <input
+                type="text"
+                name="name"
+                value={user.name}
+                onChange={handleChange}
+              />
+            ) : (
+              <strong>{user.name}</strong>
+            )}
+          </div>
+
+          {/* EMAIL */}
+          <div className="detail-row">
+            <span>Email</span>
+
+            <strong>{user.email}</strong>
+          </div>
+
+          {/* PHONE */}
+          <div className="detail-row">
+            <span>Phone</span>
+
+            {isEditing ? (
+              <input
+                type="text"
+                name="phone"
+                value={user.phone}
+                onChange={handleChange}
+              />
+            ) : (
+              <strong>
+                {user.phone || "+91 XXXXX XXXXX"}
+              </strong>
+            )}
+          </div>
+
+          {/* ADDRESS */}
+          <div className="detail-row">
+            <span>Address</span>
+
+            {isEditing ? (
+              <input
+                type="text"
+                name="address"
+                value={user.address}
+                onChange={handleChange}
+              />
+            ) : (
+              <strong>
+                {user.address || "Hyderabad, India"}
+              </strong>
+            )}
+          </div>
+
+        </div>
+
+        {/* BUTTONS */}
         <div className="profile-buttons">
 
-          {/* 👉 CREATE / EDIT BUTTON */}
-          {edit ? (
-            <button onClick={handleSave}>
-              {isProfileCreated ? "Update Profile" : "Create Profile"}
+          {isEditing ? (
+            <button
+              className="edit-btn"
+              onClick={saveProfile}
+            >
+              Save Profile
             </button>
           ) : (
-            <button onClick={() => setEdit(true)}>Edit Profile</button>
-          )}
-          <button onClick={() => navigate("/orders")}>
-  My Orders
-</button>
-
-          {/* 👉 LOGOUT ONLY AFTER CREATED */}
-          {isProfileCreated && (
-            <button className="logout" onClick={handleLogout}>
-              Logout
+            <button
+              className="edit-btn"
+              onClick={() => setIsEditing(true)}
+            >
+              Edit Profile
             </button>
           )}
+
+          <button
+            className="orders-btn"
+            onClick={() => navigate("/orders")}
+          >
+            My Orders
+          </button>
 
         </div>
 
       </div>
+
     </div>
   );
-};
+}
 
 export default Profile;

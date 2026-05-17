@@ -1,30 +1,55 @@
-import React from "react";
-import "../styles/ThreeBanners.css";
 
-import everyday from "../assets/everyday_banner.png";
-import work from "../assets/work_banner.png";
-import evening from "../assets/evg_banner.png";
+import "../styles/ThreeBanners.css";
+import { useNavigate } from "react-router-dom";
+
+import workImg from "../assets/work_banner.png";
+import everydayImg from "../assets/everyday_banner.png";
+import eveningImg from "../assets/evg_banner.png";
 
 function ThreeBanners() {
+
+  const navigate = useNavigate();
+
+  const banners = [
+    {
+      title: "WORK WEAR",
+      image: workImg,
+      link: "/tops",
+    },
+
+    {
+      title: "EVERYDAY STYLE",
+      image: everydayImg,
+      link: "/dresses",
+    },
+
+    {
+      title: "EVENING ESSENTIALS",
+      image: eveningImg,
+      link: "/skirts",
+    },
+  ];
+
   return (
-    <div>
+    <div className="three-banners">
 
-      {/* Everyday */}
-      <div className="full-banner">
-        <img src={everyday} alt="Everyday" />
-       
-      </div>
+      {banners.map((item, index) => (
 
-      {/* Work */}
-      <div className="full-banner">
-        <img src={work} alt="Work" />
-        
-      </div>
+        <div key={index} className="banner-card">
 
-      {/* Evening */}
-      <div className="full-banner">
-        <img src={evening} alt="Evening" />
-      </div>
+          <img src={item.image} alt={item.title} />
+
+          <div className="banner-overlay">
+
+            <button onClick={() => navigate(item.link)}>
+              SHOP NOW →
+            </button>
+
+          </div>
+
+        </div>
+
+      ))}
 
     </div>
   );

@@ -1,161 +1,183 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import "../styles/Admin.css";
 
 function Admin() {
-  const [title, setTitle] = useState("");
-  const [price, setPrice] = useState("");
-  const [image1, setImage1] = useState("");
-  const [image2, setImage2] = useState("");
-  const [category, setCategory] = useState("");
   const [products, setProducts] = useState([]);
 
-  // FETCH
+  const [form, setForm] = useState({
+    title: "",
+    price: "",
+    category: "",
+    image1: "",
+    image2: "",
+    image3: "",
+    image4: "",
+  });
+
+  const [editId, setEditId] = useState(null);
+  const [editPrice, setEditPrice] = useState("");
+
+  // ✅ FETCH PRODUCTS
   const fetchProducts = async () => {
-    const res = await fetch("http://localhost:5000/api/products");
-    const data = await res.json();
-    setProducts(data);
+    try {
+      const res = await axios.get("http://localhost:5000/api/products");
+      setProducts(res.data);
+    } catch (err) {
+      console.log("FETCH ERROR:", err);
+    }
   };
 
   useEffect(() => {
     fetchProducts();
   }, []);
 
-  // ADD
-  const handleAddProduct = async () => {
-    const res = await fetch("http://localhost:5000/api/products", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title, price, image1, image2, category }),
-    });
-
-    const data = await res.json();
-    alert(data.message);
-    fetchProducts();
+  // ✅ INPUT CHANGE
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // DELETE
-  const handleDelete = async (id) => {
-    const res = await fetch(`http://localhost:5000/api/products/${id}`, {
-      method: "DELETE",
-    });
+  // ✅ ADD PRODUCT (FINAL FIX)
+  const handleAdd = async () => {
+    try {
+      if (!form.title || !form.price || !form.category || !form.image1) {
+        alert("Fill all fields ❌");
+        return;
+      }
 
-    const data = await res.json();
-    alert(data.message);
-    fetchProducts();
+      await axios.post("http://localhost:5000/api/products", {
+        title: form.title,
+        price: Number(form.price.replace(/,/g, "")), // ✅ FIXED
+        category: form.category.trim().toLowerCase(), // ✅ FIX CATEGORY
+        image1: form.image1,
+        image2: form.image2,
+        image3: form.image3,
+        image4: form.image4,
+      });
+
+      alert("Product added ✅");
+
+      setForm({
+        title: "",
+        price: "",
+        category: "",
+        image1: "",
+        image2: "",
+        image3: "",
+        image4: "",
+      });
+
+      fetchProducts();
+    } catch (err) {
+      console.log("ADD ERROR:", err.response?.data || err.message);
+      alert("Add failed ❌");
+    }
+  };
+
+  // ✅ DELETE
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/products/${id}`);
+      fetchProducts();
+    } catch (err) {
+      console.log("DELETE ERROR:", err);
+    }
+  };
+
+  // ✅ EDIT CLICK
+  const handleEdit = (item) => {
+    setEditId(item._id);
+    setEditPrice(item.price.toString());
+  };
+
+  // ✅ SAVE EDIT
+  const handleSave = async (id) => {
+    try {
+      await axios.put(`http://localhost:5000/api/products/${id}`, {
+        price: Number(editPrice.replace(/,/g, "")), // ✅ FIXED
+      });
+
+      alert("Updated ✅");
+
+      setEditId(null);
+      fetchProducts();
+    } catch (err) {
+      console.log("UPDATE ERROR:", err.response || err.message);
+      alert("Update failed ❌");
+    }
   };
 
   return (
-    <div style={{ display: "flex", height: "100vh", fontFamily: "Arial" }}>
-
+    <div className="admin-container">
       {/* SIDEBAR */}
-      <div style={{
-        width: "220px",
-        background: "#0f172a",
-        color: "white",
-        padding: "20px"
-      }}>
-        <h2>HerStyle</h2>
-        <p style={{ marginTop: "30px" }}>Products</p>
+      <div className="sidebar">
+        <h2>Admin</h2>
+        <p>Dashboard</p>
+        <p className="active">Products</p>
       </div>
 
       {/* MAIN */}
-      <div style={{
-        flex: 1,
-        background: "#f1f5f9",
-        padding: "30px"
-      }}>
+      <div className="main">
+        <h1>Product Management</h1>
 
-        <h1>Admin Dashboard 👋</h1>
+        {/* FORM */}
+        <div className="form">
+          <input name="title" placeholder="Title" value={form.title} onChange={handleChange} />
+          <input name="price" placeholder="Price (e.g. 62000)" value={form.price} onChange={handleChange} />
+          <input name="category" placeholder="Category (tops/dresses)" value={form.category} onChange={handleChange} />
 
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "300px 1fr",
-          gap: "20px",
-          marginTop: "20px"
-        }}>
+          <input name="image1" placeholder="Image 1 URL" value={form.image1} onChange={handleChange} />
+          <input name="image2" placeholder="Image 2 URL" value={form.image2} onChange={handleChange} />
+          <input name="image3" placeholder="Image 3 URL" value={form.image3} onChange={handleChange} />
+          <input name="image4" placeholder="Image 4 URL" value={form.image4} onChange={handleChange} />
 
-          {/* FORM */}
-          <div style={{
-            background: "white",
-            padding: "20px",
-            borderRadius: "10px"
-          }}>
-            <h3>Add Product</h3>
+          <button onClick={handleAdd}>Add Product</button>
+        </div>
 
-            <input style={inputStyle} placeholder="Name" onChange={e => setTitle(e.target.value)} />
-            <input style={inputStyle} placeholder="Price" onChange={e => setPrice(e.target.value)} />
-            <input style={inputStyle} placeholder="Image 1" onChange={e => setImage1(e.target.value)} />
-            <input style={inputStyle} placeholder="Image 2" onChange={e => setImage2(e.target.value)} />
-            <input style={inputStyle} placeholder="Category" onChange={e => setCategory(e.target.value)} />
+        {/* PRODUCT GRID */}
+        <div className="product-grid">
+          {products.map((item) => (
+            <div key={item._id} className="card">
+              <img src={item.image1} alt="" />
 
-            <button style={buttonStyle} onClick={handleAddProduct}>
-              Add Product 🚀
-            </button>
-          </div>
+              <h3>{item.title}</h3>
 
-          {/* PRODUCTS */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-            gap: "20px"
-          }}>
-            {products.map((p) => (
-              <div key={p._id} style={{
-                background: "white",
-                padding: "10px",
-                borderRadius: "12px",
-                textAlign: "center",
-                boxShadow: "0 5px 15px rgba(0,0,0,0.1)"
-              }}>
-                <img src={p.image1} style={{
-                  width: "100%",
-                  height: "180px",
-                  objectFit: "cover",
-                  borderRadius: "10px"
-                }} />
+              {editId === item._id ? (
+                <>
+                  <input
+                    value={editPrice}
+                    onChange={(e) => setEditPrice(e.target.value)}
+                  />
 
-                <h4>{p.title}</h4>
-                <p style={{ color: "green" }}>₹ {p.price}</p>
+                  <div className="card-actions">
+                    <button className="save-btn" onClick={() => handleSave(item._id)}>
+                      Save
+                    </button>
+                    <button className="cancel-btn" onClick={() => setEditId(null)}>
+                      Cancel
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p className="price">₹{item.price.toLocaleString()}</p>
 
-                <button 
-                  onClick={() => handleDelete(p._id)}
-                  style={{
-                    background: "red",
-                    color: "white",
-                    border: "none",
-                    padding: "8px",
-                    borderRadius: "6px",
-                    cursor: "pointer"
-                  }}
-                >
-                  Delete 🗑️
-                </button>
-              </div>
-            ))}
-          </div>
-
+                  <div className="card-actions">
+                    <button className="edit-btn" onClick={() => handleEdit(item)}>
+                      Edit
+                    </button>
+                    <button className="delete-btn" onClick={() => handleDelete(item._id)}>
+                      Delete
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
 }
-
-// STYLES
-const inputStyle = {
-  width: "100%",
-  padding: "10px",
-  marginBottom: "10px",
-  borderRadius: "8px",
-  border: "1px solid #ccc"
-};
-
-const buttonStyle = {
-  width: "100%",
-  padding: "10px",
-  background: "#6366f1",
-  color: "white",
-  border: "none",
-  borderRadius: "8px",
-  cursor: "pointer"
-};
 
 export default Admin;

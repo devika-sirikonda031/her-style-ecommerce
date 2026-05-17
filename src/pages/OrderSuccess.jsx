@@ -1,44 +1,56 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../styles/OrderSuccess.css";
 
-function OrderSuccess() {
+const OrderSuccess = () => {
   const navigate = useNavigate();
+  const [order, setOrder] = useState(null);
 
-  // 🎯 RANDOM ORDER ID
-  const orderId = Math.floor(100000 + Math.random() * 900000);
-
-  // 🔥 AUTO REDIRECT AFTER 3 SEC
   useEffect(() => {
-    const timer = setTimeout(() => {
-      navigate("/");
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, [navigate]);
+    const last = JSON.parse(localStorage.getItem("lastOrder"));
+    setOrder(last);
+  }, []);
 
   return (
     <div className="success-wrapper">
-      <div className="success-container">
 
-        <div className="success-box">
+      <div className="success-card">
 
-          <h2>✅ Order Confirmed!</h2>
+        <div className="success-icon">🎉</div>
 
-          <p>Your order has been placed successfully 🎉</p>
+        <h1>Order Placed Successfully</h1>
 
-          <h3>Order ID: #{orderId}</h3>
+        <p className="success-sub">
+          Thank you for shopping with us!
+        </p>
 
-          {/* 🔥 BUTTON CLICK */}
-          <button onClick={() => navigate("/")}>
-            CONTINUE SHOPPING
+        {order && (
+          <div className="order-info">
+            <p><span>Order ID</span> {order.id}</p>
+            <p><span>Total Paid</span> ₹{order.total}</p>
+          </div>
+        )}
+
+        <div className="success-actions">
+          <button
+            className="btn-primary"
+            onClick={() => navigate("/")}
+          >
+            Continue Shopping
           </button>
 
+          <button
+            className="btn-outline"
+            onClick={() => navigate("/orders")}
+          >
+            View Orders
+          </button>
         </div>
 
       </div>
+
     </div>
   );
-}
+};
 
 export default OrderSuccess;

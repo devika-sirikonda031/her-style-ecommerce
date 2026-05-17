@@ -1,49 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import "../styles/ProductSection.css";
-
-import p1 from "../assets/dress.jpg";
-import p2 from "../assets/top.jpg";
-import p3 from "../assets/skirt.jpg";
-import p4 from "../assets/touser.jpg";
+import "./styles/ProductSection.css";
 
 function ProductSection() {
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/products")
+      .then(res => res.json())
+      .then(data => {
+        console.log(data); // 👈 check in console
+        setProducts(data.products); // ✅ IMPORTANT
+      })
+      .catch(err => console.log(err));
+  }, []);
+
   return (
     <section className="products">
       <h2>TRENDING NOW</h2>
 
       <div className="product-grid">
-        <ProductCard
-        id = {1}
-          image1={p1} 
-          image2={p1}   // same for now
-          title="Party Wear Dress" 
-          price={1899} 
-        />
-
-        <ProductCard 
-        id = {2}
-          image1={p2} 
-          image2={p2} 
-          title="Casual Denim Top" 
-          price={899} 
-        />
-
-        <ProductCard 
-        id = {3}
-          image1={p3} 
-          image2={p3} 
-          title="Pleated Midi Skirt" 
-          price={1399} 
-        />
-
-        <ProductCard 
-        id = {4}
-          image1={p4} 
-          image2={p4} 
-          title="Office Fit Trousers" 
-          price={1999} 
-        />
+        {products.map((item) => (
+          <ProductCard
+            key={item._id}
+            id={item._id}
+            image1={item.image1}
+            image2={item.image2}
+            title={item.title}
+            price={item.price}
+          />
+        ))}
       </div>
     </section>
   );

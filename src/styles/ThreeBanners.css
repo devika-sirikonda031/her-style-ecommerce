@@ -1,29 +1,116 @@
 .three-banners {
+  width: 100%;
+  padding: 60px 30px;
+  background: #f5f3f1;
+
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 20px;
-  
+  gap: 28px;
+
+  box-sizing: border-box;
 }
 
-.banner {
+/* CARD */
+.banner-card {
   position: relative;
-  height: 400px;   /* 🔥 increase height here */
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 22px;
+  cursor: pointer;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+
+  transition: transform 0.4s ease;
 }
 
-.banner img {
+.banner-card:hover {
+  transform: translateY(-8px);
+}
+
+/* IMAGE */
+.banner-card img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;  /* 🔥 full image clear */
+  height: 420px;
+  object-fit: cover;
+  display: block;
+
+  transition: transform 0.5s ease;
 }
 
-.banner h2 {
+.banner-card:hover img {
+  transform: scale(1.05);
+}
+
+/* OVERLAY */
+.banner-overlay {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.18);
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+/* REMOVE DUPLICATE TEXT */
+.banner-overlay h2 {
+  display: none;
+}
+
+/* BUTTON */
+.banner-overlay button {
+  background: white;
+  color: black;
+
+  border: none;
+  padding: 14px 28px;
+
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.banner-overlay button:hover {
+  background: black;
   color: white;
-  font-size: 24px;
-  font-weight: bold;
+  transform: scale(1.05);
+}
+
+/* TABLET */
+@media screen and (max-width: 1000px) {
+  .three-banners {
+    grid-template-columns: 1fr;
+  }
+
+  .banner-card img {
+    height: 380px;
+  }
+}
+
+/* MOBILE */
+@media screen and (max-width: 600px) {
+  .three-banners {
+    padding: 40px 15px;
+  }
+
+  .banner-card img {
+    height: 300px;
+  }
+
+  .banner-overlay {
+    padding: 20px;
+  }
+
+  .banner-overlay button {
+    width: 100%;
+  }
 }

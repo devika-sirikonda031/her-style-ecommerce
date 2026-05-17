@@ -2,8 +2,18 @@ body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
-  padding-top: 9s0px;
+  overflow-x: hidden;
+}
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
 
+/* MAIN CONTENT */
+.main-content {
+  margin-top: 90px;
 }
 
 /* COMMON BUTTON */
@@ -22,7 +32,6 @@ button:hover {
   background: #333;
 }
 
-/* ALL IMAGES */
 img {
   width: 100%;
   height: auto;

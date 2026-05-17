@@ -1,43 +1,91 @@
-/* FULL PAGE FIX */
+/* BACKGROUND */
 .success-wrapper {
-  width: 100%;
-  min-height: calc(100vh - 70px); /* navbar height */
+  min-height: 85vh;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-/* CENTER BOX */
-.success-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: #f6f7fb;
 }
 
 /* CARD */
-.success-box {
+.success-card {
   background: white;
-  padding: 40px;
-  border-radius: 12px;
+  padding: 50px 40px;
+  border-radius: 16px;
   text-align: center;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-  width: 350px;
-}
-.success-box button {
-  margin-top: 20px;
-  padding: 12px 24px;
-  background: #ff3f6c;   /* Myntra pink 🔥 */
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: 0.3s;
+  width: 420px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
-/* Hover effect */
-.success-box button:hover {
+/* ICON */
+.success-icon {
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+/* TITLE */
+.success-card h1 {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+/* SUBTEXT */
+.success-sub {
+  color: #777;
+  margin-bottom: 25px;
+}
+
+/* ORDER INFO BOX */
+.order-info {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.order-info p {
+  display: flex;
+  justify-content: space-between;
+  margin: 6px 0;
+}
+
+.order-info span {
+  font-weight: 600;
+  color: #444;
+}
+
+/* BUTTONS */
+.success-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* PRIMARY BUTTON */
+.btn-primary {
+  background: #ff3f6c;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-primary:hover {
   background: #e6365f;
-  transform: scale(1.05);
+}
+
+/* OUTLINE BUTTON */
+.btn-outline {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background: #f2f2f2;
 }

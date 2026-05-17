@@ -1,0 +1,65 @@
+.payment-container {
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+}
+
+.payment-left {
+  flex: 2;
+}
+
+.pay-card {
+  border: 1px solid #ddd;
+  padding: 18px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.pay-card.active {
+  border: 2px solid #ff3f6c;
+  background: #fff5f7;
+}
+
+.payment-right {
+  flex: 1;
+  background: #fafafa;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.price-box {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.total-box {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.address-box {
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.pay-btn {
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  background: #ff3f6c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}

@@ -1,93 +1,229 @@
 import "../styles/Login.css";
 import logo from "../assets/Her_Style_Logo.png";
+
 import { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+
+import {
+  useNavigate,
+  Link,
+} from "react-router-dom";
+
 import axios from "axios";
 
 function Signup() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
+
+  const [name, setName] =
+    useState("");
+
+  const [email, setEmail] =
+    useState("");
+
+  const [password, setPassword] =
+    useState("");
+
+  const [showPassword, setShowPassword] =
+    useState(false);
+
+  const [error, setError] =
+    useState("");
+
+  const [loading, setLoading] =
+    useState(false);
 
   const navigate = useNavigate();
 
+  /* ================= SIGNUP ================= */
+
   const handleSignup = async () => {
-    if (password !== confirmPassword) {
-      setError("Passwords do not match ❌");
+
+    setError("");
+
+    const trimmedName =
+      name.trim();
+
+    const trimmedEmail =
+      email.trim();
+
+    const trimmedPassword =
+      password.trim();
+
+    if (
+      !trimmedName ||
+      !trimmedEmail ||
+      !trimmedPassword
+    ) {
+
+      setError(
+        "Fill all fields ❌"
+      );
+
       return;
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/signup", {
-        name,
-        email,
-        password,
-      });
 
-      alert(res.data.message);
-      navigate("/"); // go to login
+      setLoading(true);
+
+      const res = await axios.post(
+
+        "http://localhost:5000/api/auth/signup",
+
+        {
+          name: trimmedName,
+          email: trimmedEmail,
+          password: trimmedPassword,
+        }
+      );
+
+      console.log(
+        "SIGNUP SUCCESS:",
+        res.data
+      );
+
+      alert(
+        "Signup successful ✅"
+      );
+
+      navigate("/login");
 
     } catch (err) {
-      alert(err.response?.data?.message || "Signup failed ❌");
+
+      console.log(
+        "SIGNUP ERROR:",
+        err.response?.data ||
+          err.message
+      );
+
+      setError(
+
+        err.response?.data
+          ?.message ||
+
+          "Signup failed ❌"
+      );
+
+    } finally {
+
+      setLoading(false);
+
     }
   };
 
   return (
+
     <div className="login-container">
-      <div className="overlay"></div>
 
       <div className="login-card">
-        <img src={logo} alt="logo" className="logo" />
 
-        <h2>Create your account</h2>
+        {/* LOGO */}
+
+        <img
+          src={logo}
+          alt="logo"
+        />
+
+        {/* NAME */}
 
         <input
           type="text"
-          placeholder="Full Name"
-          onChange={(e) => setName(e.target.value)}
+          placeholder="Name"
+          value={name}
+          onChange={(e) =>
+            setName(
+              e.target.value
+            )
+          }
         />
+
+        {/* EMAIL */}
 
         <input
           type="email"
           placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          onChange={(e) =>
+            setEmail(
+              e.target.value
+            )
+          }
         />
 
-        {/* Password */}
+        {/* PASSWORD */}
+
         <div className="password-box">
+
           <input
-            type={showPassword ? "text" : "password"}
+            type={
+              showPassword
+                ? "text"
+                : "password"
+            }
             placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            onChange={(e) =>
+              setPassword(
+                e.target.value
+              )
+            }
           />
 
-          <span onClick={() => setShowPassword(!showPassword)}>
-            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          <span
+            className="eye-icon"
+            onClick={() =>
+              setShowPassword(
+                !showPassword
+              )
+            }
+          >
+
+            {showPassword
+              ? "🙈"
+              : "👁️"}
+
           </span>
+
         </div>
 
-        {/* Confirm Password */}
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
+        {/* ERROR */}
 
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && (
 
-        <button onClick={handleSignup}>Sign Up</button>
+          <p className="error-text">
+            {error}
+          </p>
+
+        )}
+
+        {/* SIGNUP BUTTON */}
+
+        <button
+          onClick={handleSignup}
+          disabled={loading}
+        >
+
+          {loading
+            ? "Signing..."
+            : "Sign Up"}
+
+        </button>
+
+        {/* LOGIN */}
 
         <p className="extra-text">
+
           Already have an account?{" "}
-          <Link to="/" style={{ color: "#ff4d8d", fontWeight: "bold" }}>
+
+          <Link
+            to="/login"
+            className="signup-link"
+          >
             Login
           </Link>
+
         </p>
+
       </div>
+
     </div>
   );
 }
