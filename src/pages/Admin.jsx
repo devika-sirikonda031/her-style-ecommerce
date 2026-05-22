@@ -45,7 +45,7 @@ function Admin() {
         return;
       }
 
-      await axios.post("http://localhost:5000/api/products", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/products`, {
         title: form.title,
         price: Number(form.price.replace(/,/g, "")), // ✅ FIXED
         category: form.category.trim().toLowerCase(), // ✅ FIX CATEGORY
@@ -77,7 +77,7 @@ function Admin() {
   // ✅ DELETE
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/products/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/products`);
       fetchProducts();
     } catch (err) {
       console.log("DELETE ERROR:", err);
@@ -93,7 +93,7 @@ function Admin() {
   // ✅ SAVE EDIT
   const handleSave = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/products/${id}`, {
+      await axios.put(`${import.meta.env.VITE_API_URL}/api/products`, {
         price: Number(editPrice.replace(/,/g, "")), // ✅ FIXED
       });
 

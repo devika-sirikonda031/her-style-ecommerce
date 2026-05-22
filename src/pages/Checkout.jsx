@@ -26,7 +26,7 @@ function Checkout() {
 
   const handleOrder = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/api/orders", {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/products`, {
         items: cart,
         total: totalAmount,
         address: form,

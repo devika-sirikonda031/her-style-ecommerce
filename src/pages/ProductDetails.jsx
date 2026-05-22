@@ -44,7 +44,7 @@ const ProductDetails = () => {
 
     axios
       .get(
-        `http://localhost:5000/api/products/${id}`
+        `${import.meta.env.VITE_API_URL}/api/products`
       )
 
       .then((res) => {
@@ -67,7 +67,7 @@ const ProductDetails = () => {
 
     axios
       .get(
-        "http://localhost:5000/api/products"
+        `${import.meta.env.VITE_API_URL}/api/products`
       )
 
       .then((res) => {
