@@ -1,92 +1,82 @@
-🛍️ Her Style – MERN E-Commerce Application (In Progress)
+# 🛍️ Her Style – Fashion E-Commerce Website
 
-## 📌 Project Overview
+Her Style is a modern full-stack fashion e-commerce web application built using the MERN stack (MongoDB, Express.js, React.js, and Node.js).
 
-Her Style is a full-stack e-commerce web application built using the MERN stack (MongoDB, Express.js, React.js, Node.js).
-This project is currently under development and focuses on building a scalable and user-friendly online shopping platform.
+The platform provides a stylish and user-friendly online shopping experience with features like product browsing, category filtering, wishlist management, shopping cart functionality, authentication, and admin product management.
 
 <img width="1918" height="911" alt="image" src="https://github.com/user-attachments/assets/7ddf30cb-1561-483d-b6c6-8e97aec32630" />
 
 ---
 
-## 🚀 Features (Completed)
+## 🌐 Live Demo
 
-* 🔹 Backend developed using Node.js and Express.js
-* 🔹 REST API for product management (Add, Delete, Get Products)
-* 🔹 MongoDB database integration
-* 🔹 Frontend setup using React.js (Vite)
-* 🔹 Fetching products from backend API and displaying in UI
+🔗 https://her-style-ecommerce-one.vercel.app
 
 ---
 
-## 🛠️ Features (In Progress)
+## 🚀 Features
 
-* 🔸 User Authentication (Login/Register)
-* 🔸 Shopping Cart functionality
-* 🔸 UI enhancements and styling
-* 🔸 Payment Gateway Integration
+* 🔹 Modern Fashion Homepage
+* 🔹 Product Categories
+* 🔹 Product Details Page
+* 🔹 Wishlist Functionality
+* 🔹 Shopping Cart
+* 🔹 Product Search
+* 🔹 Responsive User Interface
+* 🔹 User Authentication
+* 🔹 Admin Product Management
+* 🔹 Contact Page
+* 🔹 About Page
 
 ---
 
 ## 💻 Tech Stack
 
-**Frontend:**
+### Frontend
 
 * React.js (Vite)
-* HTML, CSS
+* HTML5
+* CSS3
 * JavaScript
+* React Router DOM
 
-**Backend:**
+### Backend
 
 * Node.js
 * Express.js
 
-**Database:**
+### Database
 
 * MongoDB
 
-**Tools:**
+### Tools & Platforms
 
 * Git & GitHub
 * VS Code
 * Postman
+* Vercel
 
 ---
 
 ## 📂 Project Structure
 
-```
+```bash
 her-style-ecommerce/
 │
 ├── backend/
 │   ├── controllers/
-│   │   ├── authController.js
-│   │   └── productController.js
-│   │
 │   ├── models/
-│   │   ├── User.js
-│   │   ├── Product.js
-│   │   └── Order.js
-│   │
 │   ├── routes/
-│   │   ├── authRoutes.js
-│   │   ├── productRoutes.js
-│   │   └── orderRoutes.js
-│   │
-│   ├── utils/
-│   ├── .env
+│   ├── middleware/
+│   ├── config/
 │   └── server.js
 │
 ├── src/
+│   ├── assets/
 │   ├── components/
-│   │   ├── Navbar.jsx
-│   │   ├── ProductCard.jsx
-│   │   ├── ProductSection.jsx
-│   │   └── ...
-│   │
 │   ├── pages/
-│   ├── services/
 │   ├── styles/
+│   ├── context/
 │   ├── App.jsx
 │   └── main.jsx
 │
@@ -151,6 +141,6 @@ npm run dev
 
 ---
 
-## ⭐ Note
+⭐ Project Status
 
-This project is currently under development. More features will be added soon.
+The project is actively being improved with new features, UI enhancements, and backend optimizations.
