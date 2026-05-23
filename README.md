@@ -1,9 +1,11 @@
-<img width="1911" height="908" alt="image" src="https://github.com/user-attachments/assets/7d43f177-5283-4dee-87df-b1889dc3c0d5" /># 🛍️ Her Style – MERN E-Commerce Application (In Progress)
+🛍️ Her Style – MERN E-Commerce Application (In Progress)
 
 ## 📌 Project Overview
 
 Her Style is a full-stack e-commerce web application built using the MERN stack (MongoDB, Express.js, React.js, Node.js).
 This project is currently under development and focuses on building a scalable and user-friendly online shopping platform.
+
+<img width="1918" height="911" alt="image" src="https://github.com/user-attachments/assets/7ddf30cb-1561-483d-b6c6-8e97aec32630" />
 
 ---
 
@@ -128,9 +130,7 @@ npm run dev
 
 ---
 
-## 📸 Screenshots
-
-<img width="1911" height="908" alt="image" src="https://github.com/user-attachments/assets/8278b0fb-5e75-4df8-bb15-cd5618983c1b" />
+<img width="1913" height="907" alt="image" src="https://github.com/user-attachments/assets/ab41fd69-30bd-463a-942c-1a5f9758b2e0" />
 
 
 ---
