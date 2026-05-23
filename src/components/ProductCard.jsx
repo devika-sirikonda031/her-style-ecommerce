@@ -4,27 +4,45 @@ import { WishlistContext } from "../context/WishlistContext";
 import "../styles/ProductCard.css";
 
 function ProductCard({ item }) {
-  const navigate = useNavigate();
-  const { wishlist, toggleWishlist } = useContext(WishlistContext);
 
-  const isWishlisted = wishlist.some((p) => p._id === item._id);
+  const navigate = useNavigate();
+
+  const { wishlist, toggleWishlist } =
+    useContext(WishlistContext);
+
+  const isWishlisted = wishlist.some(
+    (p) => p._id === item._id
+  );
 
   return (
+
     <div className="product-card">
 
-      {/* IMAGE BOX */}
+      {/* IMAGE */}
       <div
         className="image-box"
         onClick={() => navigate(`/product/${item._id}`)}
       >
-        <img src={item.image1} className="img1" alt="" />
-        <img src={item.image2} className="img2" alt="" />
 
-        {/* QUICK VIEW */}
-        <div className="quick-view">QUICK VIEW</div>
+        <img
+          src={item.image1}
+          alt=""
+          className="img1"
+        />
+
+        <img
+          src={item.image2}
+          alt=""
+          className="img2"
+        />
+
+        <div className="quick-view">
+          QUICK VIEW
+        </div>
+
       </div>
 
-      {/* ❤️ WISHLIST */}
+      {/* WISHLIST */}
       <div
         className="wishlist"
         onClick={() => toggleWishlist(item)}
@@ -33,8 +51,13 @@ function ProductCard({ item }) {
       </div>
 
       {/* DETAILS */}
-      <h3 className="title">{item.title}</h3>
-      <p className="price">₹{item.price.toLocaleString()}</p>
+      <h3 className="title">
+        {item.title}
+      </h3>
+
+      <p className="price">
+        ₹{item.price}
+      </p>
 
     </div>
   );

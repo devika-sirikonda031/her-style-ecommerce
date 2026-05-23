@@ -13,11 +13,12 @@ import ProductDetails from "./pages/ProductDetails";
 import CategoryPage from "./pages/CategoryPage";
 import Wishlist from "./pages/Wishlist";
 import Orders from "./pages/Order";
+import CategorySection from "./components/CategorySection";
+import SearchPage from "./pages/SearchPage";
 
 import Admin from "./pages/Admin";
 import Payment from "./pages/Payment";
 import Address from "./pages/Address";
-
 
 // Protected Components
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -50,8 +51,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
 
-       
-
         {/* CATEGORY PAGES */}
         <Route
           path="/tops"
@@ -73,10 +72,16 @@ function App() {
           element={<CategoryPage category="trousers" />}
         />
 
-        {/* OLD CATEGORY ROUTE */}
+        {/* CATEGORY SECTION */}
         <Route
-          path="/category/:category"
-          element={<CategoryPage />}
+          path="/categories"
+          element={<CategorySection />}
+        />
+
+        {/* SEARCH PAGE */}
+        <Route
+          path="/search/:keyword"
+          element={<SearchPage />}
         />
 
         {/* PRODUCT DETAILS */}
@@ -177,8 +182,6 @@ function App() {
 
         {/* FALLBACK */}
         <Route path="*" element={<Home />} />
-
-        
 
       </Routes>
     </>

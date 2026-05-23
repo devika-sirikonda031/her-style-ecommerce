@@ -9,7 +9,7 @@ import { WishlistProvider } from "./context/WishlistContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter basename="/her-style-ecommerce">
+    <BrowserRouter>
       <CartProvider>
         <WishlistProvider>
           <App />

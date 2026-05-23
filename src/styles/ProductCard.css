@@ -1,21 +1,29 @@
 .product-card {
-  position: relative;
-  cursor: pointer;
+  width: 100%;
+  background: white;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
 }
 
 .image-box {
+  width: 100%;
+  height: 650px;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .image-box img {
   width: 100%;
-  height: 380px;
+  height: 100%;
   object-fit: cover;
-  transition: 0.4s ease;
+  transition: 0.4s;
 }
 
-/* HOVER IMAGE */
 .img2 {
   position: absolute;
   top: 0;
@@ -31,40 +39,52 @@
   opacity: 0;
 }
 
-/* QUICK VIEW */
 .quick-view {
   position: absolute;
-  bottom: 0;
+  bottom: -60px;
   width: 100%;
-  background: black;
+  background: rgba(0, 0, 0, 0.85);
   color: white;
   text-align: center;
-  padding: 10px;
-  font-size: 14px;
-  opacity: 0;
+  padding: 15px;
   transition: 0.3s;
+  font-size: 16px;
+  letter-spacing: 1px;
 }
 
 .image-box:hover .quick-view {
-  opacity: 1;
+  bottom: 0;
 }
 
-/* WISHLIST */
 .wishlist {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 22px;
+  top: 20px;
+  right: 20px;
+  background: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
   cursor: pointer;
+  z-index: 5;
 }
 
-/* TEXT */
 .title {
-  font-size: 14px;
-  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+  margin-top: 18px;
+  color: #222;
+  padding: 0 5px;
 }
 
 .price {
-  color: #e91e63;
-  font-weight: bold;
+  color: #ff4f7b;
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 8px;
+  padding: 0 5px;
 }

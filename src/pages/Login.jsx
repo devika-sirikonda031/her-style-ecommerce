@@ -59,7 +59,7 @@ function Login() {
 
       const res = await axios.post(
 
-        "https://her-style-backend-rs3l.onrender.com/api/auth/login",
+        "http://localhost:5000/api/auth/login",
 
         {
           email: trimmedEmail,

@@ -12,16 +12,30 @@ export const registerUser = async (req, res) => {
       password
     } = req.body;
 
+    console.log("REGISTER DATA:", req.body);
+
+    // CHECK EXISTING USER
+
     const existingUser =
       await User.findOne({ email });
+
+    console.log(
+      "EXISTING USER:",
+      existingUser
+    );
 
     if (existingUser) {
 
       return res.status(400).json({
+
         message:
           "Email already registered ❌",
+
       });
+
     }
+
+    // CREATE USER
 
     const newUser = new User({
 
@@ -31,7 +45,14 @@ export const registerUser = async (req, res) => {
 
     });
 
+    // SAVE USER
+
     await newUser.save();
+
+    console.log(
+      "NEW USER SAVED:",
+      newUser
+    );
 
     res.status(201).json({
 
@@ -44,7 +65,10 @@ export const registerUser = async (req, res) => {
 
   } catch (error) {
 
-    console.log(error);
+    console.log(
+      "REGISTER ERROR:",
+      error
+    );
 
     res.status(500).json({
 
@@ -52,7 +76,9 @@ export const registerUser = async (req, res) => {
         "Server Error ❌",
 
     });
+
   }
+
 };
 
 /* ================= LOGIN ================= */
@@ -66,8 +92,27 @@ export const loginUser = async (req, res) => {
       password
     } = req.body;
 
+    console.log(
+      "LOGIN EMAIL:",
+      email
+    );
+
+    console.log(
+      "LOGIN PASSWORD:",
+      password
+    );
+
+    // FIND USER
+
     const user =
       await User.findOne({ email });
+
+    console.log(
+      "FOUND USER:",
+      user
+    );
+
+    // USER NOT FOUND
 
     if (!user) {
 
@@ -77,9 +122,16 @@ export const loginUser = async (req, res) => {
           "User not found ❌",
 
       });
+
     }
 
+    // WRONG PASSWORD
+
     if (user.password !== password) {
+
+      console.log(
+        "PASSWORD NOT MATCHED"
+      );
 
       return res.status(400).json({
 
@@ -87,7 +139,14 @@ export const loginUser = async (req, res) => {
           "Wrong password ❌",
 
       });
+
     }
+
+    console.log(
+      "LOGIN SUCCESS"
+    );
+
+    // SUCCESS
 
     res.status(200).json({
 
@@ -100,7 +159,10 @@ export const loginUser = async (req, res) => {
 
   } catch (error) {
 
-    console.log(error);
+    console.log(
+      "LOGIN ERROR:",
+      error
+    );
 
     res.status(500).json({
 
@@ -108,5 +170,7 @@ export const loginUser = async (req, res) => {
         "Server Error ❌",
 
     });
+
   }
+
 };

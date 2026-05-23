@@ -68,7 +68,7 @@ function Signup() {
 
       const res = await axios.post(
 
-        "https://her-style-backend-rs3l.onrender.com/api/auth/signup",
+        "http://localhost:5000/api/auth/register",
 
         {
           name: trimmedName,
