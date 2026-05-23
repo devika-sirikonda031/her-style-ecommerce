@@ -15,6 +15,8 @@ import Wishlist from "./pages/Wishlist";
 import Orders from "./pages/Order";
 import CategorySection from "./components/CategorySection";
 import SearchPage from "./pages/SearchPage";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 import Admin from "./pages/Admin";
 import Payment from "./pages/Payment";
@@ -23,6 +25,7 @@ import Address from "./pages/Address";
 // Protected Components
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
+
 
 function App() {
 
@@ -71,6 +74,8 @@ function App() {
           path="/trousers"
           element={<CategoryPage category="trousers" />}
         />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
 
         {/* CATEGORY SECTION */}
         <Route
@@ -182,7 +187,6 @@ function App() {
 
         {/* FALLBACK */}
         <Route path="*" element={<Home />} />
-
       </Routes>
     </>
   );

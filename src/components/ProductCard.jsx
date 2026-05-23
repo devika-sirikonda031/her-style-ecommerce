@@ -42,13 +42,7 @@ function ProductCard({ item }) {
 
       </div>
 
-      {/* WISHLIST */}
-      <div
-        className="wishlist"
-        onClick={() => toggleWishlist(item)}
-      >
-        {isWishlisted ? "❤️" : "🤍"}
-      </div>
+      
 
       {/* DETAILS */}
       <h3 className="title">

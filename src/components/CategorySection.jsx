@@ -40,7 +40,7 @@ function CategorySection() {
 
   return (
 
-    <div className="category-section">
+    <div id="trending" className="category-section">
 
       <h2 className="category-title">
         TRENDING NOW

@@ -1,4 +1,5 @@
 import "../styles/Footer.css";
+import { Link } from "react-router-dom";
 
 import {
   FaInstagram,
@@ -49,35 +50,83 @@ function Footer() {
 
         {/* QUICK LINKS */}
         <div className="footer-links">
+
           <h3>Quick Links</h3>
 
           <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/">Shop</a></li>
-            <li><a href="/">About</a></li>
-            <li><a href="/">Contact</a></li>
+
+            <li>
+              <Link to="/">
+                Home
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/categories">
+                Shop
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/about">
+                About
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/contact">
+                Contact
+              </Link>
+            </li>
+
           </ul>
+
         </div>
 
         {/* CATEGORIES */}
         <div className="footer-category">
+
           <h3>Categories</h3>
 
           <ul>
-            <li><a href="/category/skirts">Skirts</a></li>
-            <li><a href="/category/tops">Tops</a></li>
-            <li><a href="/category/trousers">Trousers</a></li>
-            <li><a href="/category/dresses">Dresses</a></li>
+
+            <li>
+              <Link to="/skirts">
+                Skirts
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/tops">
+                Tops
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/trousers">
+                Trousers
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/dresses">
+                Dresses
+              </Link>
+            </li>
+
           </ul>
+
         </div>
 
         {/* CONTACT */}
         <div className="footer-contact">
+
           <h3>Contact</h3>
 
           <p>Email: herstyle@gmail.com</p>
           <p>Phone: +91 9876543210</p>
           <p>Hyderabad, India</p>
+
         </div>
 
       </div>

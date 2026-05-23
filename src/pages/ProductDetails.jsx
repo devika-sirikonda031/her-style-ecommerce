@@ -42,16 +42,18 @@ const ProductDetails = () => {
 
   useEffect(() => {
 
-    axios
-      .get(
-        `${import.meta.env.VITE_API_URL}/api/products`
-      )
+    axios.get("http://localhost:5000/api/products")
 
-      .then((res) => {
+  .then((res) => {
 
-        setProduct(res.data);
+    const foundProduct =
+      res.data.find(
+        (item) => item._id === id
+      );
 
-      })
+    setProduct(foundProduct);
+
+  })
 
       .catch((err) =>
         console.log(err)
@@ -65,11 +67,7 @@ const ProductDetails = () => {
 
     if (!product) return;
 
-    axios
-      .get(
-        `${import.meta.env.VITE_API_URL}/api/products`
-      )
-
+    axios.get("http://localhost:5000/api/products")
       .then((res) => {
 
         const related = res.data.filter(
